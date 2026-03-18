@@ -1,89 +1,145 @@
-# 🎬 Desafio de Projeto: Banco de Dados - Site de Filmes  
-**DIO - Trilha .NET - Módulo de Banco de Dados**
+# 🎬 Desafio de Banco de Dados — Site de Filmes
 
-## 📚 Descrição
+![T-SQL](https://img.shields.io/badge/T--SQL-CC2927?style=flat&logo=microsoft-sql-server&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=flat&logo=microsoft-sql-server&logoColor=white)
+![DIO](https://img.shields.io/badge/DIO-Trilha_.NET-512BD4?style=flat)
 
-Este projeto foi desenvolvido como parte da trilha **.NET** da [Digital Innovation One (DIO)](https://www.dio.me/). O desafio propõe a aplicação de conhecimentos em **modelagem e consultas SQL** com base em um cenário realista: um **site de filmes** que armazena informações sobre **filmes, atores e gêneros**.
-
-O principal objetivo é executar 12 consultas SQL específicas em um banco de dados relacional previamente estruturado, a fim de responder a perguntas de negócio e gerar **informações relevantes para análise de dados**.
+Desafio de projeto desenvolvido como parte da **Trilha .NET** da [Digital Innovation One (DIO)](https://www.dio.me/), módulo de **Banco de Dados**. O objetivo é aplicar conhecimentos em **modelagem relacional e consultas SQL** em um cenário realista de um site de filmes.
 
 ---
 
-## 🧠 Contexto
+## 📋 Sobre o Desafio
 
-Você foi designado como responsável pelo **banco de dados** de um site de filmes. O banco contém informações sobre os filmes, seus atores e os gêneros. A estrutura envolve **relacionamentos muitos para muitos**, exigindo habilidade para manipular dados com **JOINs, filtros e agrupamentos**.
+Você foi designado como responsável pelo banco de dados de um site de filmes. O banco contém informações sobre filmes, atores e gêneros, com **relacionamentos muitos para muitos**, exigindo domínio de `JOIN`, filtros, agrupamentos e ordenações.
+
+O desafio consiste em executar **12 consultas SQL** específicas que respondem a perguntas reais de negócio sobre os dados.
 
 ---
 
 ## 🗂️ Estrutura do Banco de Dados
 
-O banco de dados se chama **Filmes** e possui as seguintes tabelas:
+O banco se chama **Filmes** e é composto pelas seguintes tabelas:
 
-- **Filmes**: Armazena os dados dos filmes (ID, Nome, Ano, Duração, etc).
-- **Atores**: Armazena os dados dos atores (ID, PrimeiroNome, UltimoNome, Genero).
-- **Generos**: Armazena os diferentes gêneros de filmes (ID, Nome).
-- **ElencoFilme**: Relaciona os filmes com os atores, incluindo o papel do ator.
-- **FilmesGenero**: Relaciona os filmes com seus respectivos gêneros.
+| Tabela | Descrição |
+|---|---|
+| `Filmes` | Dados dos filmes: ID, Nome, Ano, Duração |
+| `Atores` | Dados dos atores: ID, PrimeiroNome, UltimoNome, Genero |
+| `Generos` | Gêneros disponíveis: ID, Nome |
+| `ElencoFilme` | Relaciona filmes e atores + Papel desempenhado |
+| `FilmesGenero` | Relaciona filmes e seus gêneros |
 
 ### 🔗 Relacionamentos
 
-- Um **filme pode ter vários gêneros** e um gênero pode pertencer a **vários filmes**.
-- Um **filme pode ter vários atores** e um ator pode participar de **vários filmes**.
+```
+Filmes ──< ElencoFilme >── Atores
+Filmes ──< FilmesGenero >── Generos
+```
+
+- Um filme pode ter **vários gêneros** e um gênero pode pertencer a **vários filmes**
+- Um filme pode ter **vários atores** e um ator pode participar de **vários filmes**
 
 ---
 
-## 🔧 Preparação do Ambiente
+## 🎯 As 12 Consultas
 
-Para executar este projeto, você deve:
-
-1. Ter o **SQL Server** instalado.
-2. Executar o script `Script Filmes.sql` disponível na pasta `/Scripts` deste repositório.
-3. Isso criará o banco de dados `Filmes` com todas as tabelas e dados populados.
+| # | Descrição |
+|---|---|
+| 1 | Buscar o **nome e ano** dos filmes |
+| 2 | Buscar o nome e ano dos filmes, ordenados por **ano crescente** |
+| 3 | Buscar o filme **"De Volta para o Futuro"** com nome, ano e duração |
+| 4 | Buscar os filmes lançados em **1997** |
+| 5 | Buscar os filmes lançados **após o ano 2000** |
+| 6 | Buscar os filmes com duração **entre 100 e 150 minutos**, ordenados pela duração |
+| 7 | Buscar a **quantidade de filmes por ano**, agrupando e ordenando de forma decrescente |
+| 8 | Buscar os **atores do gênero masculino** |
+| 9 | Buscar as **atrizes do gênero feminino**, ordenando pelo primeiro nome |
+| 10 | Buscar o **nome do filme e seu gênero** |
+| 11 | Buscar o nome do filme e o gênero apenas do tipo **"Mistério"** |
+| 12 | Buscar o **nome do filme, atores e o papel** desempenhado por cada um |
 
 ---
 
-## 🎯 Objetivos
+## 🗃️ Estrutura do Repositório
 
-Realizar as **12 consultas SQL** abaixo utilizando os dados fornecidos no script:
+```
+Banco_de_dados/
+├── Imagens/                  # Prints dos resultados esperados de cada consulta
+├── Script Desafio            # Scripts SQL com as 12 consultas resolvidas
+├── Script Filmes.sql         # Script de criação e população do banco de dados
+└── README.md
+```
 
-| Nº | Descrição da Consulta |
-|----|------------------------|
-| 1  | Buscar o **nome e ano dos filmes**. |
-| 2  | Buscar o **nome e ano dos filmes**, ordenados por **ano crescente**. |
-| 3  | Buscar o filme **"De Volta para o Futuro"**, trazendo nome, ano e duração. |
-| 4  | Buscar os filmes lançados em **1997**. |
-| 5  | Buscar os filmes lançados **após o ano 2000**. |
-| 6  | Buscar os filmes com duração **maior que 100 e menor que 150 minutos**, ordenando pela duração crescente. |
-| 7  | Buscar a **quantidade de filmes lançados por ano**, agrupando por ano, e ordenando pela duração em ordem decrescente. |
-| 8  | Buscar os **atores do gênero masculino**, retornando `PrimeiroNome` e `UltimoNome`. |
-| 9  | Buscar os **atores do gênero feminino**, retornando `PrimeiroNome`, `UltimoNome`, e ordenando por `PrimeiroNome`. |
-| 10 | Buscar o **nome do filme e seu gênero**. |
-| 11 | Buscar o **nome do filme e o gênero** apenas do tipo **"Mistério"**. |
-| 12 | Buscar o **nome do filme e os atores**, retornando `PrimeiroNome`, `UltimoNome` e o `Papel` desempenhado. |
+---
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+
+- [SQL Server](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads) instalado
+- [SSMS](https://learn.microsoft.com/pt-br/sql/ssms/download-sql-server-management-studio-ssms) (SQL Server Management Studio) ou [Azure Data Studio](https://azure.microsoft.com/pt-br/products/data-studio)
+
+### Passo a passo
+
+**1. Clone o repositório**
+```bash
+git clone https://github.com/GuiMRDS/Banco_de_dados.git
+```
+
+**2. Crie o banco e popule os dados**
+
+Abra o SSMS, conecte ao seu servidor e execute:
+```sql
+-- Execute o arquivo Script Filmes.sql
+-- Isso criará o banco "Filmes" com todas as tabelas e dados
+```
+
+**3. Execute as consultas do desafio**
+
+Abra o arquivo `Script Desafio` e execute cada consulta individualmente para verificar os resultados.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **SQL Server**
-- **Transact-SQL (T-SQL)**
-- Gerenciadores: SQL Server Management Studio (SSMS) ou Azure Data Studio
+| Tecnologia | Uso |
+|---|---|
+| T-SQL (Transact-SQL) | Linguagem de consulta utilizada |
+| SQL Server | Banco de dados relacional |
+| SSMS / Azure Data Studio | Ferramentas de gerenciamento |
+| Git / GitHub | Versionamento de código |
 
 ---
 
-## ✅ Resultado Esperado
+## 📚 Conceitos Praticados
 
-Cada uma das consultas deve retornar **exatamente os dados esperados** conforme as imagens e exemplos fornecidos no desafio original da DIO. Certifique-se de que a saída corresponde em colunas, valores e ordenações.
+- `SELECT` com múltiplas colunas e aliases
+- `WHERE` com filtros simples e compostos (`AND`, `BETWEEN`, `>`, `<`)
+- `ORDER BY` crescente e decrescente
+- `GROUP BY` com `COUNT` para agrupamento de dados
+- `JOIN` entre tabelas com chaves estrangeiras
+- Relacionamentos **muitos para muitos** via tabelas intermediárias
+- Consultas analíticas para responder perguntas de negócio
 
 ---
 
-## 🏁 Conclusão
+## 🎓 Contexto Acadêmico
 
-Este projeto reforça a importância da **estruturação correta de dados relacionais** e da **manipulação eficiente com SQL**. As habilidades desenvolvidas aqui são fundamentais para qualquer profissional da área de **Back-end, Análise de Dados ou Engenharia de Dados**.
+> Projeto desenvolvido como desafio da **Trilha .NET** da **Digital Innovation One (DIO)**, módulo de Banco de Dados.
+>
+> Fork do repositório original: [digitalinnovationone/trilha-net-banco-de-dados-desafio](https://github.com/digitalinnovationone/trilha-net-banco-de-dados-desafio)
 
 ---
 
-## 🤝 Créditos
+## 👨‍💻 Autor
 
-Desenvolvido como parte do desafio proposto pela [DIO - Digital Innovation One](https://www.dio.me/)  
-Instrutores: Equipe DIO & parceiros da trilha .NET
+**Guilherme Marinho**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-guilherme--marinho04-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/guilherme-marinho04/)
+[![GitHub](https://img.shields.io/badge/GitHub-GuiMRDS-black?style=flat&logo=github)](https://github.com/GuiMRDS)
+[![Email](https://img.shields.io/badge/Email-guimars22%40gmail.com-red?style=flat&logo=gmail)](mailto:guimars22@gmail.com)
+
+---
+
+## 📄 Licença
+
+Este projeto foi desenvolvido para fins educacionais como parte de um desafio da DIO.
